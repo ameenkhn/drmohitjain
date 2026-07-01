@@ -26868,12 +26868,12 @@ body,
 
 .jyoti-services-intro-showcase .jyoti-services-hero-media img {
   display: block;
-  height: 380px;
+  height: 400px !important;
   min-height: 0;
   width: 100%;
   border-radius: 8px;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 22%;
   box-shadow: 0 28px 60px rgba(10, 44, 51, 0.15);
 }
 
@@ -26899,7 +26899,7 @@ body,
   }
 
   .jyoti-services-intro-showcase .jyoti-services-hero-media img {
-    height: 320px;
+    height: 300px !important;
   }
 
 }
