@@ -27032,6 +27032,25 @@ body,
   .vl-btn-video svg { width: 22px; height: 22px; }
 }
 
+/* Keep the whole header on ONE line: logo + menu + CTAs.
+   Let the CTAs take their natural width on the right and the
+   menu flex to fill the remaining space (removes the rigid
+   25% column that forced the buttons to wrap). */
+@media (min-width: 992px) {
+  .vl-header-area .row-bg1 { flex-wrap: nowrap; }
+  .vl-header-area .row-bg1 > [class*="col-"] { min-width: 0; }
+  .vl-header-area .row-bg1 .col-lg-2 { flex: 0 0 auto; width: auto; max-width: none; }
+  .vl-header-area .row-bg1 .col-lg-7 { flex: 1 1 auto; width: auto; max-width: none; }
+  .vl-header-area .row-bg1 .col-lg-3 { flex: 0 0 auto; width: auto; max-width: none; }
+  .vl-header-area .row-bg1 .btn-area1 {
+    display: flex; flex-wrap: nowrap; align-items: center;
+    justify-content: flex-end; gap: 10px;
+  }
+  .vl-header-area .row-bg1 .vl-btn7,
+  .vl-header-area .row-bg1 .vl-btn-video { white-space: nowrap; }
+  .homepage1-body .vl-main-menu ul > li > a { padding: 0 13px; }
+}
+
 /* ============================================================
    NAVBAR CTA REDESIGN — Dr Jain Mother & Child Clinic
    Clear hierarchy: Video Consultation = primary (filled),
@@ -27151,6 +27170,51 @@ body,
   .homepage4-body .vl-hero-btn .btn-area1 .vl-btn7 { font-size: 14px !important; }
 }
 
+/* --- Phone CTA = icon-only round button (number hidden, still
+   dials on click, read by screen readers, shown as a tooltip) --- */
+@media (min-width: 992px) {
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call {
+    width: 50px;
+    height: 50px;
+    padding: 0 !important;
+    gap: 0 !important;
+    font-size: 0 !important;
+    border-radius: 50% !important;
+    color: var(--brand-plum) !important;
+    background: rgba(95, 182, 194, 0.14) !important;
+    border: 1px solid rgba(95, 182, 194, 0.32) !important;
+    box-shadow: none !important;
+  }
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call svg,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call svg {
+    width: 19px !important;
+    height: 19px !important;
+    margin: 0 !important;
+  }
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call svg path,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call svg path {
+    fill: var(--brand-sage);
+    transition: fill .35s ease;
+  }
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call:hover,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call:hover {
+    background: var(--brand-sage) !important;
+    border-color: var(--brand-sage) !important;
+    border-radius: 50% !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(95, 182, 194, 0.34);
+  }
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call:hover svg path,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call:hover svg path {
+    fill: #ffffff;
+  }
+}
+@media (min-width: 992px) and (max-width: 1319px) {
+  .homepage6-body .vl-hero-btn .btn-area1 .vl-btn-call,
+  .homepage4-body .vl-hero-btn .btn-area1 .vl-btn-call { width: 46px; height: 46px; }
+}
+
 /* ============================================================
    CTA animated care visual — paediatric · vaccination · asthma · allergy
    Replaces the old "Follow Us" box inside the CTA band.
@@ -27181,6 +27245,7 @@ body,
 .djmc-team-monogram { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 .djmc-team-monogram span { font-family: var(--ztc-family-font2), 'Outfit', sans-serif;
   font-size: 78px; font-weight: 700; color: rgba(255, 255, 255, 0.94); letter-spacing: 3px; }
+.djmc-team-doctor { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .djmc-team-card--alt .djmc-team-media { background: linear-gradient(135deg, #5fb6c2 0%, #1a6376 100%); }
 .djmc-team-role { position: absolute; left: 16px; bottom: 14px; z-index: 2; color: #fff;
   font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
@@ -27305,12 +27370,16 @@ body,
 .djmc-test-media { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .djmc-test-media img { width: 100%; height: 240px; object-fit: cover; border-radius: 14px;
   box-shadow: 0 16px 40px rgba(10, 44, 51, 0.14); }
+.djmc-test-media--single img { height: auto; object-fit: contain; background: #f2f6f9; }
 .djmc-badge-latest { display: inline-block; margin-left: 8px; font-size: 10.5px; font-weight: 700;
   letter-spacing: .04em; text-transform: uppercase; color: #fff; background: #5fb6c2;
   padding: 2px 8px; border-radius: 999px; vertical-align: middle; }
 @media (min-width: 768px) {
   .djmc-test-media { grid-template-columns: 1fr 1fr; }
   .djmc-test-media img { height: 300px; }
+  .djmc-test-media--single { grid-template-columns: 1fr; }
+  .djmc-test-media--single img { height: auto; max-height: 560px; object-fit: contain;
+    background: #f2f6f9; }
 }
 
 .djmc-care-visual { max-width: 360px; margin: 0 auto; text-align: center; }
@@ -27385,4 +27454,108 @@ body,
   .djmc-cv-ring { opacity: .22; }
   .djmc-cv-ecg { stroke-dashoffset: 0; }
   .djmc-cv-bubble { opacity: .5; }
+}
+
+/* ============================================================
+   TESTING & DIAGNOSTICS — "What we test for" icon-tile grid
+   ============================================================ */
+.djmc-test-panel { padding: 46px; }
+.djmc-test-head {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+.djmc-test-head-icon {
+  flex: 0 0 auto;
+  width: 78px;
+  height: 78px;
+  border-radius: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0e97a8 0%, #3fa9b8 100%);
+  box-shadow: 0 18px 36px rgba(14, 151, 168, 0.30);
+}
+.djmc-test-head-icon svg { width: 40px; height: 40px; }
+.djmc-test-head-txt h5 {
+  margin: 0 0 7px;
+  font-size: 25px;
+  line-height: 1.2;
+  color: #0a2c33;
+}
+.djmc-test-head-txt p {
+  margin: 0;
+  max-width: 660px;
+  color: #5a6670;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.djmc-test-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.djmc-test-tile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(14, 151, 168, 0.12);
+  box-shadow: 0 10px 30px rgba(10, 44, 51, 0.05);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.djmc-test-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(14, 151, 168, 0.30);
+  box-shadow: 0 22px 46px rgba(10, 44, 51, 0.11);
+}
+.djmc-test-tile-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0e97a8;
+  background: linear-gradient(135deg, rgba(95, 182, 194, 0.18) 0%, rgba(14, 151, 168, 0.10) 100%);
+  transition: color .35s ease, background .35s ease, transform .35s ease;
+}
+.djmc-test-tile-icon svg { width: 26px; height: 26px; }
+.djmc-test-tile:hover .djmc-test-tile-icon {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0e97a8 0%, #3fa9b8 100%);
+  transform: scale(1.06);
+}
+.djmc-test-tile h6 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #0a2c33;
+}
+.djmc-test-tile--latest {
+  background: linear-gradient(135deg, #ffffff 0%, #f3fbfc 100%);
+  border-color: rgba(14, 151, 168, 0.22);
+}
+.djmc-test-tile--wide { grid-column: 1 / -1; }
+
+@media (max-width: 991px) {
+  .djmc-test-panel { padding: 30px; }
+}
+@media (max-width: 767px) {
+  .djmc-test-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .djmc-test-head-icon { width: 64px; height: 64px; border-radius: 18px; }
+  .djmc-test-head-icon svg { width: 32px; height: 32px; }
+  .djmc-test-grid { grid-template-columns: 1fr; }
+  .djmc-test-tile--wide { grid-column: auto; }
 }
