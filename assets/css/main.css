@@ -27559,3 +27559,74 @@ body,
   .djmc-test-grid { grid-template-columns: 1fr; }
   .djmc-test-tile--wide { grid-column: auto; }
 }
+
+/* ============================================================
+   TOP UTILITY BAR (above the navbar) — contact info + socials
+   ============================================================ */
+.djmc-topbar {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #0d3540 0%, #0a2c33 100%);
+  border-bottom: 2px solid var(--brand-sage);
+}
+.djmc-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 0;
+  flex-wrap: wrap;
+}
+.djmc-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.djmc-topbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+.djmc-topbar-item:hover { color: #ffffff; }
+.djmc-topbar-item svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  color: var(--brand-sage-soft);
+}
+.djmc-topbar-social { display: flex; align-items: center; gap: 9px; }
+.djmc-topbar-social a {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s ease, transform .3s ease;
+}
+.djmc-topbar-social a:hover { background: var(--brand-sage); transform: translateY(-2px); }
+.djmc-topbar-social svg { width: 14px; height: 14px; }
+
+/* flush the floating header to the very top and hide the bar once sticky */
+.homepage6-body .vl-transparent-header { padding-top: 0; }
+.header-sticky .djmc-topbar { display: none; }
+
+@media (max-width: 1199px) { .djmc-topbar-addr { display: none; } }
+@media (max-width: 991px) {
+  .djmc-topbar-inner { justify-content: center; gap: 14px; }
+}
+@media (max-width: 575px) {
+  .djmc-topbar-email { display: none; }
+  .djmc-topbar-inner { padding: 7px 0; gap: 12px; }
+  .djmc-topbar-left { gap: 16px; }
+}
